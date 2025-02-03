@@ -14,6 +14,9 @@ em++ \
 	-DHB_CONFIG_OVERRIDE_H=\"config-override-subset.h\" \
 	-DHB_EXPERIMENTAL_API \
 	--no-entry \
+	-s MODULARIZE \
+	-s EXPORT_ES6 \
+	-s EXPORT_NAME=createHarfBuzz \
 	-s EXPORTED_FUNCTIONS=@hb-subset.symbols \
 	-s INITIAL_MEMORY=65MB \
 	-o hb-subset.wasm \
