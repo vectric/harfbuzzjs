@@ -1,0 +1,73 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 21,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "binaryDir": "${sourceDir}/_build_${presetName}",
+      "installDir": "${sourceDir}/_bin_${presetName}",
+      "hidden": true
+    },
+    {
+      "name": "base_emscripten",
+      "inherits": "base",
+      "generator": "Ninja",
+      "toolchainFile": "$env{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
+      "hidden": true,
+      "vendor": {
+        "jetbrains.com/clion": {
+          "toolchain": "Emscripten"
+        }
+      },
+      "cacheVariables": {
+        "CMAKE_VERBOSE_MAKEFILE": "OFF"
+      }
+    },
+    {
+      "name": "_debug",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "_release",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "Debug",
+      "displayName": "Emscripten (Debug)",
+      "inherits": ["base_emscripten", "_debug"]
+    },
+    {
+      "name": "Release",
+      "displayName": "Emscripten (Release)",
+      "inherits": ["base_emscripten", "_release"]
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "base_emscripten",
+      "hidden": true
+    },
+    {
+      "name": "Debug",
+      "displayName": "Emscripten (Debug)",
+      "inherits": "base_emscripten",
+      "configurePreset": "Debug"
+    },
+    {
+      "name": "Release",
+      "displayName": "Emscripten (Release)",
+      "inherits": "base_emscripten",
+      "configurePreset": "Release"
+    }
+  ]
+}
