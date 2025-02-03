@@ -1,8 +1,10 @@
-var hbjs = require('./hbjs.js');
-var hb = require('./hb.js');
+import hbjs from './hbjs.js';
+import hb from './dist/hb.js';
 
-module.exports = new Promise(function (resolve, reject) {
+const promise = new Promise(function (resolve, reject) {
   hb().then((instance) => {
     resolve(hbjs(instance));
   }, reject);
 });
+
+export default promise;

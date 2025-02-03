@@ -3,6 +3,7 @@
   "version": "0.4.13",
   "description": "Minimal version of HarfBuzz for JavaScript use",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "mocha test/index.js"
   },

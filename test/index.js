@@ -1,11 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-const { expect } = require('chai');
+import fs from 'node:fs';
+import path from 'node:path';
+import {expect} from 'chai';
+
+const __dirname = path.normalize(new URL(".", import.meta.url).pathname).replace(
+    /^\\/,
+    ""
+);
+
 let hb;
 let blob, face, font, buffer;
 
 before(async function () {
-  hb = await require('..');
+  hb = await (await import('../index.js')).default;
 });
 
 afterEach(function () {
